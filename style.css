@@ -240,10 +240,9 @@ h1 {
   letter-spacing: 2px;
   text-transform: uppercase;
   opacity: 0.6;
-  animation: bounce 2s infinite;
   text-align: center;
   color: var(--color-text);
-}
+} 
 
 .scroll-hint span {
   display: inline-block;
@@ -266,13 +265,11 @@ h1 {
   opacity: 0;
   transform: translateY(30px);
   transition: var(--transition-smooth);
-  animation: cardReveal 1.4s ease forwards;
-  animation-delay: 2.4s;
   width: min(90vw, 420px);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
   z-index: 2; /* asegurar que esté por encima del fondo fijo */
-}
+} 
 
 .details.visible {
   opacity: 1;
@@ -613,6 +610,29 @@ h2 {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.entered .card {
+  animation: cardReveal 1.4s ease forwards;
+  animation-delay: 0.4s;
+}
+.entered .details {
+  animation: cardReveal 1.4s ease forwards;
+  animation-delay: 0.6s;
+}
+.entered .flower {
+  animation: floatIn 1.8s ease forwards;
+}
+.entered .flower.left { animation-delay: 0.3s; }
+.entered .flower.right { animation-delay: 0.6s; }
+.entered .flower.bottom { animation-delay: 0.3s; }
+.entered .flower.top { animation-delay: 0.6s; }
+.entered .card2top { animation-delay: 0.6s; }
+.entered .card2bottom { animation-delay: 0.6s; }
+.entered .card2right { animation-delay: 0.6s; }
+.entered .card2left { animation-delay: 0.6s; }
+.entered .scroll-hint {
+  animation: bounce 2s infinite;
 }
 
 /* ===== RESPONSIVE ===== */

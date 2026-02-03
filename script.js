@@ -91,6 +91,9 @@ function attemptAutoplay() {
     .then(() => {
       // Autoplay exitoso
       hideOverlay();
+      // Activar animaciones si la reproducción se inicia automáticamente
+      document.documentElement.classList.add('entered');
+      initScrollAnimations();
     })
     .catch(() => {
       // Autoplay bloqueado (es normal en la mayoría de navegadores)
@@ -104,6 +107,9 @@ function playAudioFromOverlay() {
   elements.audio.play()
     .then(() => {
       hideOverlay();
+      // Activar animaciones y observers sólo después de que el usuario acepte audio
+      document.documentElement.classList.add('entered');
+      initScrollAnimations();
     })
     .catch(error => {
       console.error('Error al reproducir audio:', error);
@@ -116,7 +122,7 @@ function playAudioFromOverlay() {
         }, 2000);
       }
     });
-}
+} 
 
 function hideOverlay() {
   if (!elements.overlay) return;
@@ -298,7 +304,7 @@ function init() {
   initCardAnimation();
   initAudio();
   initIntro();
-  initScrollAnimations();
+  // initScrollAnimations() se invoca después de iniciar el audio para que las animaciones comiencen al entrar
   initSmoothScroll();
   initErrorHandling();
   optimizePerformance();
@@ -306,7 +312,7 @@ function init() {
 
   // Log de inicialización exitosa
   console.log('✨ Invitación inicializada correctamente');
-}
+} 
 
 // ===== EJECUTAR AL CARGAR EL DOM =====
 if (document.readyState === 'loading') {
