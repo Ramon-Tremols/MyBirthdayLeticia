@@ -62,6 +62,9 @@ body::before {
 /* ===== SECCIONES ===== */
 .section {
   background: transparent;
+  background-color: #f5f5f5;
+  color: #f5f5f5;
+  background: #ffffff;
   min-height: auto;
   padding: 1rem 2rem; /* reducir espacio entre secciones */
   padding-bottom: 2.5rem;
