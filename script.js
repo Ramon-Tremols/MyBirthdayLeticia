@@ -1,6 +1,6 @@
 // ===== CONFIGURACIÓN INICIAL =====
 const config = {
-  introDelay: 15000,
+  introDelay: 1500,
   audioFadeDelay: 500,
   observerThreshold: 0.2
 };
@@ -86,6 +86,7 @@ function initAudio() {
 
 function attemptAutoplay() {
   if (!elements.audio) return;
+  elements.intro.style.transition = `opacity ${config.delayAfterIntro}ms ease`;
 
   elements.audio.play()
     .then(() => {
@@ -97,7 +98,11 @@ function attemptAutoplay() {
     })
     .catch(() => {
       // Autoplay bloqueado (es normal en la mayoría de navegadores)
-      showOverlay();
+          const delayAfterIntro = (config.introDelay || 0) + 1300; // 1300ms buffer para el fade-out
+        setTimeout(() => {
+        showOverlay();
+       
+      }, delayAfterIntro);
     });
 }
 
