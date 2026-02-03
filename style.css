@@ -16,22 +16,26 @@
 }
 
 /* ===== BODY CON SCROLL ===== */
+html {
+  background-color: #ffffff;
+}
 body {
   font-family: 'Montserrat', 'Playfair Display', sans-serif;
   background: none;
+  background-color: transparent;
   overflow-x: hidden;
   color: var(--color-text);
   line-height: 1.6;
   position: relative;
   min-height: 100%;
-}
+} 
 
 /* Fondo fijo compatible con iOS: pseudo-elemento + variable --vh */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2; /* más abajo en el stacking context */
   pointer-events: none;
   background-image: url("assets/imagenes/fondo.png");
   background-size: cover;
@@ -40,7 +44,7 @@ body::before {
   height: calc(var(--vh, 1vh) * 100);
   will-change: transform;
   -webkit-transform: translateZ(0);
-}
+} 
 
 @supports (height: 100dvh) {
   body::before { height: 100dvh; }
@@ -83,6 +87,7 @@ body::before {
 /* ===== TARJETA ===== */
 .card {
   position: relative;
+  z-index: 2; /* asegurar que esté por encima del fondo fijo */
   width: min(90vw, 420px);
   aspect-ratio: 3 / 5;
   border-radius: var(--border-radius);
@@ -93,7 +98,7 @@ body::before {
   animation: cardReveal 1.4s ease forwards;
   animation-delay: 2.4s;
   transition: var(--transition-smooth);
-}
+} 
 
 .card:hover {
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
@@ -242,6 +247,7 @@ h1 {
   background: #ffffff;
   padding: 3rem 2.5rem;
   border-radius: var(--border-radius);
+  background-clip: padding-box; /* evita que el fondo se muestre fuera del borde redondeado */
   text-align: center;
   opacity: 0;
   transform: translateY(30px);
@@ -251,6 +257,7 @@ h1 {
   width: min(90vw, 420px);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
+  z-index: 2; /* asegurar que esté por encima del fondo fijo */
 }
 
 .details.visible {
