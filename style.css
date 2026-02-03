@@ -22,7 +22,7 @@ html {
 body {
   font-family: 'Montserrat', 'Playfair Display', sans-serif;
   background: none;
-  /* background-color: transparent; */
+  background-color: transparent;
   overflow-x: hidden;
   color: var(--color-text);
   line-height: 1.6;
@@ -265,7 +265,6 @@ h1 {
   width: min(90vw, 420px);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
-  z-index: 2; /* asegurar que esté por encima del fondo fijo */
 } 
 
 .details.visible {
