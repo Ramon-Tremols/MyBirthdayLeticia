@@ -30,9 +30,9 @@ function initCardAnimation() {
   if (!elements.card) return;
   
   // Solo activar en dispositivos no táctiles
+  elements.card.addEventListener('mousemove', handleCardMouseMove);
+  elements.card.addEventListener('mouseleave', handleCardMouseLeave);
   if (window.matchMedia('(hover: hover)').matches) {
-    elements.card.addEventListener('mousemove', handleCardMouseMove);
-    elements.card.addEventListener('mouseleave', handleCardMouseLeave);
   }
 }
 
@@ -137,7 +137,7 @@ function hideOverlay() {
       elements.overlay.setAttribute('aria-hidden', 'true');
       elements.overlay.style.display = 'none';
       elements.overlay.removeEventListener('transitionend', onTransitionEnd);
-
+  elements.overlay.style.zIndex = '-100';
       // Asegurar que el audio siga reproduciéndose (por si el navegador lo detuvo por enfoque)
       if (elements.audio) {
         elements.audio.play().catch(() => {

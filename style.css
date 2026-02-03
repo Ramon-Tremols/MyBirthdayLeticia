@@ -98,20 +98,20 @@ body::before {
   animation: cardReveal 1.4s ease forwards;
   animation-delay: 2.4s;
   transition: var(--transition-smooth);
-  background-color: #f5f5f5;
-  color: #f5f5f5;
+  background-color: #ffffff;
+  color: #ffffff;
   background: #ffffff;
 } 
 
 .card:hover {
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 /* ===== CONTENIDO TARJETA ===== */
 .content {
+  background-color: #ffffff;
+  color: #ffffff;
   background: #ffffff;
-  background-color: #f5f5f5;
-  color: #f5f5f5;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -153,14 +153,14 @@ h1 {
 /* Asegurar que los contenedores posicionados actúen como referencia */
 .details, .card {
   position: relative;
-  background-color: #f5f5f5;
-  color: #f5f5f5;
+  background-color: #ffffff;
+  color: #ffffff;
   background: #ffffff;
 }
 
 .flower {
-  background-color: #f5f5f5;
-  color: #f5f5f5;
+  background-color: #ffffff;
+  color: #ffffff;
   background: #ffffff;
   position: absolute;
   width: clamp(80px, 22vw, 260px);
@@ -168,11 +168,16 @@ h1 {
   opacity: 0;
   animation: floatIn 1.8s ease forwards;
   pointer-events: none;
-  mix-blend-mode: multiply;
-  filter: brightness(1.2);
   transform-origin: center;
+  transition: transform 0.3s ease; 
+  z-index: -2;
   will-change: transform;
-  transition: transform 0.3s ease;
+  
+  /*  
+  filter: brightness(1.2);
+
+  mix-blend-mode: multiply;
+  */
 }
 
 .flower.left {
@@ -192,6 +197,7 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
     animation-delay: 0.3s;
+
 }
 .flower.top {
     width: 65%;
@@ -216,6 +222,8 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
     animation-delay: 0.6s;
+    z-index: -1;
+
  }
 .card2right {
     width: 65%;
@@ -252,8 +260,8 @@ h1 {
 }
 
 .details {
-  background-color: #f5f5f5;
-  color: #f5f5f5;
+  background-color: #ffffff;
+  color: #ffffff;
   background: #ffffff;
   padding: 3rem 2.5rem;
   border-radius: var(--border-radius);
@@ -265,13 +273,14 @@ h1 {
   width: min(90vw, 420px);
   box-shadow: var(--shadow-soft);
   overflow: hidden;
+  z-index: 2; /* asegurar que esté por encima del fondo fijo */
 } 
 
 .details.visible {
   opacity: 1;
   transform: translateY(0);
-  background-color: #f5f5f5;
-  color: #f5f5f5;
+  background-color: #ffffff;
+  color: #ffffff;
   background: #ffffff;
 }
 
@@ -367,6 +376,7 @@ h1 {
   opacity: 0.65;
   font-style: italic;
   font-weight: 400;
+  color: #313131;
 }
 
 /* Enlace de mapa */
@@ -425,7 +435,7 @@ h1 {
   padding: 0.9rem 1.4rem;
   font-size: 0.75rem;
   letter-spacing: 1.5px;
-  color: white;
+  color: rgb(255, 255, 255);
   background: linear-gradient(135deg, #cc7a9d, #ea5998);
   text-decoration: none;
   text-transform: uppercase;
@@ -438,6 +448,7 @@ h1 {
 
 .whatsapp-btn .material-symbols-outlined {
   font-size: 20px;
+  color: rgb(255, 255, 255);
 }
 
 .whatsapp-btn:hover {
@@ -522,7 +533,7 @@ h2 {
 
 #audio-overlay:hover span {
   transform: scale(1.05);
-  box-shadow: 0 15px 50px rgb(0, 0, 0);
+  box-shadow: 0 5px 50px rgba(0, 0, 0, 0.286);
 }
 
 /* ===== INTRO ===== */
