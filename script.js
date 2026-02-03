@@ -126,11 +126,41 @@ function playAudioFromOverlay() {
 
 function hideOverlay() {
   if (!elements.overlay) return;
-  
-  elements.overlay.style.opacity = '0';
+
+  // Añadir clase que activa la transición de cierre
+  elements.overlay.classList.add('closing');
+
+  // Esperar al transitionend para ocultar/limpiar el DOM (más fiable que timeouts)
+  const onTransitionEnd = (e) => {
+    if (e.propertyName === 'opacity' || e.propertyName === 'transform') {
+      // marcar como oculto para accesibilidad y remover del flujo
+      elements.overlay.setAttribute('aria-hidden', 'true');
+      elements.overlay.style.display = 'none';
+      elements.overlay.removeEventListener('transitionend', onTransitionEnd);
+
+      // Asegurar que el audio siga reproduciéndose (por si el navegador lo detuvo por enfoque)
+      if (elements.audio) {
+        elements.audio.play().catch(() => {
+          /* no bloquear si el navegador evita autoplay */
+        });
+      }
+    }
+  };
+
+  elements.overlay.addEventListener('transitionend', onTransitionEnd);
+
+  // Fallback por si no se dispara transitionend (ej. navegadores antiguos)
   setTimeout(() => {
-    elements.overlay.style.display = 'none';
-  }, config.audioFadeDelay);
+    if (elements.overlay && elements.overlay.style.display !== 'none') {
+      elements.overlay.setAttribute('aria-hidden', 'true');
+      elements.overlay.style.display = 'none';
+      elements.overlay.removeEventListener('transitionend', onTransitionEnd);
+
+      if (elements.audio) {
+        elements.audio.play().catch(() => {});
+      }
+    }
+  }, 800);
 }
 
 function showOverlay() {
