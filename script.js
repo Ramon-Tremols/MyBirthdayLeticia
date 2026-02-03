@@ -5,6 +5,16 @@ const config = {
   observerThreshold: 0.2
 };
 
+// Ajuste de --vh para barras móviles (iOS/Android) y evitar problemas con 100vh
+function setVh() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+// Ejecutar y actualizar en resize/orientation
+setVh();
+window.addEventListener('resize', setVh);
+window.addEventListener('orientationchange', setVh);
+
 // ===== ELEMENTOS DEL DOM =====
 const elements = {
   card: document.querySelector('.card'),

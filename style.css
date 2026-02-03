@@ -18,10 +18,32 @@
 /* ===== BODY CON SCROLL ===== */
 body {
   font-family: 'Montserrat', 'Playfair Display', sans-serif;
-  background: url("assets/imagenes/fondo.png") center / cover no-repeat fixed;
+  background: none;
   overflow-x: hidden;
   color: var(--color-text);
   line-height: 1.6;
+  position: relative;
+  min-height: 100%;
+}
+
+/* Fondo fijo compatible con iOS: pseudo-elemento + variable --vh */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("assets/imagenes/fondo.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: calc(var(--vh, 1vh) * 100);
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+}
+
+@supports (height: 100dvh) {
+  body::before { height: 100dvh; }
 }
 
 /* ===== CONTENEDOR PRINCIPAL ===== */
@@ -118,16 +140,25 @@ h1 {
 }
 
 /* ===== FLORES ===== */
+/* Asegurar que los contenedores posicionados actúen como referencia */
+.details, .card {
+  position: relative;
+}
+
 .flower {
   position: absolute;
-  height: max-content;
+  width: clamp(80px, 22vw, 260px);
+  height: auto;
   opacity: 0;
   animation: floatIn 1.8s ease forwards;
   pointer-events: none;
   mix-blend-mode: multiply;
-  filter: brightness(1.2); 
-  width: clamp(80px, 22vw, 220px); /* se adapta a pantalla */
+  filter: brightness(1.2);
+  transform-origin: center;
+  will-change: transform;
+  transition: transform 0.3s ease;
 }
+
 .flower.left {
   width: 65%;
   left: -10%;
