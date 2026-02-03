@@ -1,6 +1,6 @@
 // ===== CONFIGURACIÓN INICIAL =====
 const config = {
-  introDelay: 3500,
+  introDelay: 15000,
   audioFadeDelay: 500,
   observerThreshold: 0.2
 };

@@ -17,14 +17,11 @@
 
 /* ===== BODY CON SCROLL ===== */
 body {
-  font-family: 'Playfair Display', serif;
   font-family: 'Montserrat', 'Playfair Display', sans-serif;
   background: url("assets/imagenes/fondo.png") center / cover no-repeat fixed;
   overflow-x: hidden;
   color: var(--color-text);
   line-height: 1.6;
-  background-position: top;
-  background-repeat: repeat; /* Esto hace que se repita en X y Y */
 }
 
 /* ===== CONTENEDOR PRINCIPAL ===== */
@@ -129,6 +126,7 @@ h1 {
   pointer-events: none;
   mix-blend-mode: multiply;
   filter: brightness(1.2); 
+  width: clamp(80px, 22vw, 220px); /* se adapta a pantalla */
 }
 .flower.left {
   width: 65%;
